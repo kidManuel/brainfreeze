@@ -1,10 +1,10 @@
-import { MeshProps, useFrame } from "@react-three/fiber";
-import React from "react";
-import { Vector3 } from "three";
-import { Pawn } from "../Pawn";
+import { MeshProps, useFrame } from '@react-three/fiber';
+import React from 'react';
+import { Vector3 } from 'three';
+import { Pawn } from '../Pawn';
 
 /** Base for spawning pawns */
-export const Base = (props: MeshProps): React.ReactElement => {
+export function Base(props: MeshProps): React.ReactElement {
   useFrame((state) => {});
 
   return (
@@ -14,7 +14,7 @@ export const Base = (props: MeshProps): React.ReactElement => {
       {...props}
     >
       <boxGeometry args={[1, 1.5, 1]} />
-      <meshStandardMaterial color={"lemonchiffon"} />
+      <meshStandardMaterial color="lemonchiffon" />
       <Pawn
         position={[0, 0.5, 0]}
         inputDirection={new Vector3(0.05, 0, 0)}
@@ -22,4 +22,4 @@ export const Base = (props: MeshProps): React.ReactElement => {
       />
     </mesh>
   );
-};
+}

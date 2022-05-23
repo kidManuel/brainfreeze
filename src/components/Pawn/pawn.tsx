@@ -39,7 +39,7 @@ export const Pawn = ({
       {...rest}
     >
       <sphereGeometry args={[0.7, 5, 4]} />
-      <meshStandardMaterial color={"#F0A868"} />
+      <meshStandardMaterial color="#F0A868" />
     </mesh>
   );
 };

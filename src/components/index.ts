@@ -1,2 +1,2 @@
-export * from "./Mainpage"
-export * from "./Base"
+export * from './Mainpage';
+export * from './Base';

@@ -3,7 +3,7 @@ import { Mainpage } from './components';
 
 function App() {
   return (
-      <Mainpage></Mainpage>
+    <Mainpage />
   );
 }
 

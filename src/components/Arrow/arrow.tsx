@@ -1,12 +1,13 @@
-import { MeshProps, useFrame } from "@react-three/fiber";
-import React, { useEffect, useRef } from "react";
-import { Mesh } from "three";
-import { getGLTF } from "../../util/gltfLoader";
+import { MeshProps, useFrame } from '@react-three/fiber';
+import React, { useRef, useEffect } from 'react';
+import { Mesh } from 'three';
+import { getGLTF } from '../../util/gltfLoader';
 
 /** Base for spawning pawns */
-export const Arrow = (props: MeshProps): React.ReactElement => {
+export function Arrow(props: MeshProps): React.ReactElement {
   const meshRef = useRef<Mesh>(null);
-  const { nodes } = getGLTF("/arrow.gltf");
+  const { nodes } = getGLTF('/arrow.gltf');
+  const t = 't';
 
   useEffect(() => {
     if (meshRef.current) {
@@ -18,11 +19,11 @@ export const Arrow = (props: MeshProps): React.ReactElement => {
     <mesh
       ref={meshRef}
       geometry={nodes.arrow.geometry}
-      onPointerDown={() => console.log("mouse down")}
-      onPointerUp={() => console.log("mouse Up")}
+      onPointerDown={() => console.log('mouse down')}
+      onPointerUp={() => console.log('mouse Up')}
       {...props}
     >
-      <meshStandardMaterial color={"lemonchiffon"} />
+      <meshStandardMaterial color="lemonchiffon" />
     </mesh>
   );
-};
+}
