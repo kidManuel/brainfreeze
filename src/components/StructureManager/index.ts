@@ -1,1 +1,1 @@
-export * from "./structuremanager"
+export * from './structuremanager';

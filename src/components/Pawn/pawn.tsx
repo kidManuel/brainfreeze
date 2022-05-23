@@ -1,6 +1,8 @@
-import { MeshProps, useFrame } from "@react-three/fiber";
-import { BufferGeometry, Material, Mesh, Vector3 } from "three";
-import React, { useEffect, useRef } from "react";
+import { MeshProps, useFrame } from '@react-three/fiber';
+import {
+  BufferGeometry, Material, Mesh, Vector3,
+} from 'three';
+import React, { useEffect, useRef } from 'react';
 
 type PawnProps = {
   inputDirection: Vector3;
@@ -8,11 +10,11 @@ type PawnProps = {
 };
 
 /** Base for spawning workers */
-export const Pawn = ({
+export function Pawn({
   inputDirection,
   maxDistance,
   ...rest
-}: MeshProps & PawnProps): React.ReactElement => {
+}: MeshProps & PawnProps): React.ReactElement {
   const meshRef = useRef<Mesh>(null);
   const distanceTravelled = useRef<number>(0);
   const currentDirection = useRef<Vector3>(new Vector3(0, 0, 0));
@@ -42,4 +44,4 @@ export const Pawn = ({
       <meshStandardMaterial color="#F0A868" />
     </mesh>
   );
-};
+}

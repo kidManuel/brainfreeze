@@ -1,8 +1,8 @@
-import { useFrame } from "@react-three/fiber";
-import React, { useState } from "react";
-import { Vector2 } from "three";
-import { Pawn } from "../Pawn";
-import { v4 } from "uuid";
+import { useFrame } from '@react-three/fiber';
+import React, { useState } from 'react';
+import { Vector2 } from 'three';
+import { v4 } from 'uuid';
+import { Pawn } from '../Pawn';
 
 type StructProps = {
   onStructSelected: () => void;
@@ -15,18 +15,16 @@ type StructState = {
 };
 
 export function StructureManager(): React.ReactElement {
-  //maybe unnecessary
+  // maybe unnecessary
   const [structsState, setStructsState] = useState<StructState[]>([]);
   useFrame((state) => {});
 
-  const getStructures = () => {
-    return structsState.map((state) => state.component);
-  };
+  const getStructures = () => structsState.map((state) => state.component);
 
   const addStruct = (
     BuildingType: typeof React.Component,
     position?: Vector2,
-    props?: StructProps
+    props?: StructProps,
   ) => {
     const newId = v4();
     const newState = [...structsState];
