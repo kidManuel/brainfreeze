@@ -14,7 +14,7 @@ type StructState = {
   position: Vector2;
 };
 
-export function StructureManager(): React.ReactElement {
+export const StructureManager = (): React.ReactElement => {
   // maybe unnecessary
   const [structsState, setStructsState] = useState<StructState[]>([]);
   useFrame((state) => {});
@@ -37,4 +37,4 @@ export function StructureManager(): React.ReactElement {
   };
 
   return <>{getStructures()}</>;
-}
+};

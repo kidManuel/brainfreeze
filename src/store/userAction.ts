@@ -5,7 +5,7 @@ enum UserActionState {
   DEFAULT,
   DRAGGING,
   PLACING_BUILDING,
-  PAUSED
+  PAUSED,
 }
 
 interface CounterState {

@@ -1,0 +1,8 @@
+.bottomBar {
+    position: absolute;
+    bottom: 0;
+    right: 150px;
+    display: flex;
+    align-items: flex-end;
+  }
+  

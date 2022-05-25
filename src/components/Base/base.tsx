@@ -4,7 +4,7 @@ import { Vector3 } from 'three';
 import { Pawn } from '../Pawn';
 
 /** Base for spawning pawns */
-export function Base(props: MeshProps): React.ReactElement {
+export const Base = (props: MeshProps): React.ReactElement => {
   useFrame((state) => {});
 
   return (
@@ -22,4 +22,4 @@ export function Base(props: MeshProps): React.ReactElement {
       />
     </mesh>
   );
-}
+};

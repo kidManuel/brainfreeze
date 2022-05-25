@@ -1,17 +1,11 @@
 import React from 'react';
+import { BottomBar, BottomBarButton } from '../UI Components';
 import './styles.css';
 
-export function UIManager(): React.ReactElement {
-  return (
-    <div id="uimanager">
-      <div className="bottomBar">
-        <button type="button" className="barButton" onClick={() => console.log('BUILD BASE')}>
-          Base
-        </button>
-        <button type="button" className="barButton" onClick={() => console.log('BUILD BASE')}>
-          Barracks
-        </button>
-      </div>
-    </div>
-  );
-}
+export const UIManager = (): React.ReactElement => (
+  <div id="uimanager">
+    <BottomBar>
+      <BottomBarButton onClickHandler={() => {}}>Button</BottomBarButton>
+    </BottomBar>
+  </div>
+);

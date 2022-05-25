@@ -1,10 +1,10 @@
-import { MeshProps, useFrame } from '@react-three/fiber';
+import { MeshProps } from '@react-three/fiber';
 import React, { useRef, useEffect } from 'react';
 import { Mesh } from 'three';
 import { getGLTF } from '../../util/gltfLoader';
 
 /** Base for spawning pawns */
-export function Arrow(props: MeshProps): React.ReactElement {
+export const Arrow = (props: MeshProps): React.ReactElement => {
   const meshRef = useRef<Mesh>(null);
   const { nodes } = getGLTF('/arrow.gltf');
   const t = 't';
@@ -26,4 +26,4 @@ export function Arrow(props: MeshProps): React.ReactElement {
       <meshStandardMaterial color="lemonchiffon" />
     </mesh>
   );
-}
+};

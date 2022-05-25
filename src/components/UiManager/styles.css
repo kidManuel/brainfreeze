@@ -12,14 +12,6 @@
   pointer-events: all;
 }
 
-.bottomBar {
-  position: absolute;
-  bottom: 0;
-  right: 150px;
-  display: flex;
-  align-items: flex-end;
-}
-
 .barButton {
   background-color: #f0a868;
   color: white;
