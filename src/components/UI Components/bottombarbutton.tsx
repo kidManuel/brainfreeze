@@ -10,8 +10,6 @@ export const BottomBarButton = ({
   children = null,
 }: BottomBarButtonProps):React.ReactElement => (
   <button type="button" className="barButton" onClick={onClickHandler}>
-    <>
-      {children}
-    </>
+    {children}
   </button>
 );

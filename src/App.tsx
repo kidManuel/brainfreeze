@@ -1,10 +1,8 @@
 import React from 'react';
 import { Mainpage } from './components';
 
-function App() {
-  return (
-    <Mainpage />
-  );
-}
+const App = () => (
+  <Mainpage />
+);
 
 export default App;

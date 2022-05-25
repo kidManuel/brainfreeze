@@ -1,8 +1,12 @@
 import React from 'react';
-import './styles.css';
+import { BottomBarContainer } from './styles';
 
 interface BottomBarProps {
   children: React.ReactNode
 }
 
-export const BottomBar = ({ children }: BottomBarProps):React.ReactElement => <div>{children}</div>;
+export const BottomBar = ({ children }: BottomBarProps):React.ReactElement => (
+  <BottomBarContainer>
+    {children}
+  </BottomBarContainer>
+);

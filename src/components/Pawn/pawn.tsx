@@ -1,6 +1,6 @@
 import { MeshProps, useFrame } from '@react-three/fiber';
 import {
-  BufferGeometry, Material, Mesh, Vector3,
+  Mesh, Vector3,
 } from 'three';
 import React, { useEffect, useRef } from 'react';
 
@@ -10,17 +10,17 @@ type PawnProps = {
 };
 
 /** Base for spawning workers */
-export function Pawn({
+export const Pawn = ({
   inputDirection,
   maxDistance,
   ...rest
-}: MeshProps & PawnProps): React.ReactElement {
+}: MeshProps & PawnProps): React.ReactElement => {
   const meshRef = useRef<Mesh>(null);
   const distanceTravelled = useRef<number>(0);
   const currentDirection = useRef<Vector3>(new Vector3(0, 0, 0));
 
-  useFrame((_) => {
-    meshRef.current && meshRef.current.position.add(currentDirection.current);
+  useFrame(() => {
+    meshRef.current?.position.add(currentDirection.current);
     distanceTravelled.current += currentDirection.current.length();
     if (distanceTravelled.current > maxDistance) {
       // Re villero esto
@@ -44,4 +44,4 @@ export function Pawn({
       <meshStandardMaterial color="#F0A868" />
     </mesh>
   );
-}
+};

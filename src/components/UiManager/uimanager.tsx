@@ -5,7 +5,7 @@ import './styles.css';
 export const UIManager = (): React.ReactElement => (
   <div id="uimanager">
     <BottomBar>
-      <BottomBarButton onClickHandler={() => {}}>Button</BottomBarButton>
+      <BottomBarButton onClickHandler={() => {}}>Base</BottomBarButton>
     </BottomBar>
   </div>
 );

@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from './store';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "./store";
 
 enum UserActionState {
   DEFAULT,
@@ -9,7 +9,7 @@ enum UserActionState {
 }
 
 interface CounterState {
-  action: UserActionState
+  action: UserActionState;
 }
 
 const initialState: CounterState = {
@@ -17,7 +17,7 @@ const initialState: CounterState = {
 };
 
 export const userActionSlice = createSlice({
-  name: 'userAction',
+  name: "userAction",
   initialState,
   reducers: {
     startPlacing: (state) => {
