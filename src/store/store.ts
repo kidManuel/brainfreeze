@@ -1,11 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import userAction from './userAction';
+import create, { SetState, GetState } from 'zustand';
+import { createUserActionSlice } from './userAction';
 
-export const store = configureStore({
-  reducer: {
-    userAction,
-  },
+export const createRootSlice = (set: SetState<any>, get: GetState<any>) => ({
+  ...createUserActionSlice(set, get),
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const useStore = create(createRootSlice);

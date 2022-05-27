@@ -14,7 +14,7 @@ export const Mainpage = (): React.ReactElement => (
         <Floor />
         {/* <Base position={[0, 0.75, 0]} /> */}
         <directionalLight />
-        <Arrow />
+        <Arrow isDragging={false} />
       </PresentationControls>
     </Canvas>
   </>

@@ -1,6 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
-import type { RootState } from './store';
+import { StoreSlice } from './types';
 
 export enum UserActionState {
   DEFAULT,
@@ -9,26 +7,19 @@ export enum UserActionState {
   PAUSED,
 }
 
-interface CounterState {
-  action: UserActionState;
+interface IUserActionSlice {
+  current: UserActionState;
+  setCurrentAction: (newState: UserActionState) => void;
+  startPlacing: () => void;
 }
 
-const initialState: CounterState = {
-  action: UserActionState.DEFAULT,
-};
-
-export const userActionSlice = createSlice({
-  name: 'userAction',
-  initialState,
-  reducers: {
-    startPlacing: (state) => {
-      state.action = UserActionState.PLACING_BUILDING;
-    },
+export const createUserActionSlice: StoreSlice<IUserActionSlice> = (set, get) => ({
+  current: UserActionState.DEFAULT,
+  setCurrentAction: (newState) => {
+    set((state) => ({ ...state, current: newState }));
+  },
+  getCurrentAction: () => get().current,
+  startPlacing: () => {
+    set((state) => ({ ...state, current: UserActionState.DRAGGING }));
   },
 });
-
-export const { startPlacing } = userActionSlice.actions;
-
-export const useActionStateSelector = (state: RootState) => state.userAction.action;
-
-export default userActionSlice.reducer;

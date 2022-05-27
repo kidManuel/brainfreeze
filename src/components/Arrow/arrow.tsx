@@ -1,15 +1,19 @@
 import { MeshProps } from '@react-three/fiber';
 import React, { useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Mesh } from 'three';
-import { useActionStateSelector, UserActionState } from '../../store/userAction';
+import { useStore } from '../../store';
+import { UserActionState } from '../../store/userAction';
 import { getGLTF } from '../../util/gltfLoader';
 
+interface ArrowProps {
+  isDragging: boolean,
+}
+
 /** Base for spawning pawns */
-export const Arrow = (props: MeshProps): React.ReactElement => {
+export const Arrow = ({ isDragging, ...rest }: MeshProps & ArrowProps): React.ReactElement => {
   const meshRef = useRef<Mesh>(null);
   const { nodes } = getGLTF('/arrow.gltf');
-  const userState = useSelector(useActionStateSelector);
+  const currentUserState = useStore((state) => state.current);
 
   useEffect(() => {
     if (meshRef.current) {
@@ -23,9 +27,9 @@ export const Arrow = (props: MeshProps): React.ReactElement => {
       geometry={nodes.arrow.geometry}
       onPointerDown={() => console.log('mouse down')}
       onPointerUp={() => console.log('mouse Up')}
-      {...props}
+      {...rest}
     >
-      <meshStandardMaterial color={userState === UserActionState.DEFAULT ? 'yellow' : 'red'} />
+      <meshStandardMaterial color={currentUserState === UserActionState.DEFAULT ? 'yellow' : 'red'} />
     </mesh>
   );
 };
