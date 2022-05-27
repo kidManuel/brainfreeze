@@ -8,33 +8,18 @@ type StructProps = {
   onStructSelected: () => void;
 };
 
-type StructState = {
+export type StructState = {
   id: string;
   component: React.ReactElement;
-  position: Vector2;
 };
 
-export const StructureManager = (): React.ReactElement => {
+interface StructureManagerProps {
+  structsList: StructState[];
+}
+
+export const StructureManager = ({ structsList }: StructureManagerProps): React.ReactElement => {
   // maybe unnecessary
-  const [structsState, setStructsState] = useState<StructState[]>([]);
-  useFrame((state) => {});
-
-  const getStructures = () => structsState.map((state) => state.component);
-
-  const addStruct = (
-    BuildingType: typeof React.Component,
-    position?: Vector2,
-    props?: StructProps,
-  ) => {
-    const newId = v4();
-    const newState = [...structsState];
-    newState.push({
-      id: newId,
-      component: <BuildingType {...props} key={newId} />,
-      position: position || new Vector2(0, 0),
-    });
-    setStructsState(newState);
-  };
+  const getStructures = () => structsList.map((state) => state.component);
 
   return <>{getStructures()}</>;
 };
