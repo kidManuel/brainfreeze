@@ -1,13 +1,15 @@
 import { MeshProps } from '@react-three/fiber';
 import React, { useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Mesh } from 'three';
+import { useActionStateSelector, UserActionState } from '../../store/userAction';
 import { getGLTF } from '../../util/gltfLoader';
 
 /** Base for spawning pawns */
 export const Arrow = (props: MeshProps): React.ReactElement => {
   const meshRef = useRef<Mesh>(null);
   const { nodes } = getGLTF('/arrow.gltf');
-  const t = 't';
+  const userState = useSelector(useActionStateSelector);
 
   useEffect(() => {
     if (meshRef.current) {
@@ -23,7 +25,7 @@ export const Arrow = (props: MeshProps): React.ReactElement => {
       onPointerUp={() => console.log('mouse Up')}
       {...props}
     >
-      <meshStandardMaterial color="lemonchiffon" />
+      <meshStandardMaterial color={userState === UserActionState.DEFAULT ? 'yellow' : 'red'} />
     </mesh>
   );
 };
