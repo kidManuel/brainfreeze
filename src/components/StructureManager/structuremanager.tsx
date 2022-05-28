@@ -1,24 +1,25 @@
-import { useFrame } from '@react-three/fiber';
-import React, { useState } from 'react';
-import { Vector2 } from 'three';
-import { v4 } from 'uuid';
-
-type StructProps = {
-  onStructSelected: () => void;
-};
-
-export type StructState = {
-  id: string;
-  component: React.ReactElement;
-};
+import React from 'react';
+import { Vector3 } from 'three';
+import { useStore } from '../../store';
 
 interface StructureManagerProps {
-  structsList: StructState[];
 }
 
-export const StructureManager = ({ structsList }: StructureManagerProps): React.ReactElement => {
-  // maybe unnecessary
-  const getStructures = () => structsList.map((state) => state.component);
+export const StructureManager = (): React.ReactElement => {
+  const structsList = useStore((state) => state.structsList);
 
-  return <>{getStructures()}</>;
+  const getComponents = () => structsList.map((singleStruct) => {
+    const ComponentType = singleStruct.type;
+    const { id, position } = singleStruct;
+    return (
+      <ComponentType
+        onStructSelected={() => {}}
+        structId={id}
+        key={id}
+        position={position || new Vector3(0, 0, 0)}
+      />
+    );
+  });
+
+  return <>{getComponents()}</>;
 };

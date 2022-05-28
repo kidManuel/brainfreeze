@@ -1,15 +1,15 @@
-import { MeshProps } from '@react-three/fiber';
 import React from 'react';
-import { StaticReadUsage, Vector2 } from 'three';
-import { StoreSlice } from './types';
+import { Vector3 } from 'three';
+import { StructProps } from '../types';
+import { StoreSlice } from './helperTypes';
 
 interface StructureInfo {
   id: string,
-  type: React.ComponentType<MeshProps>,
-  position: Vector2
+  type: React.ComponentType<StructProps>,
+  position: Vector3
 }
 
-interface IStructsSlice {
+export interface IStructsSlice {
   structsList: StructureInfo[];
   addStructure: (newStruct: StructureInfo) => void;
   removeStructure: (id: string) => void;

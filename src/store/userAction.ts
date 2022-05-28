@@ -1,13 +1,7 @@
-import { StoreSlice } from './types';
+import { UserActionState } from '../types';
+import { StoreSlice } from './helperTypes';
 
-export enum UserActionState {
-  DEFAULT,
-  DRAGGING,
-  PLACING_BUILDING,
-  PAUSED,
-}
-
-interface IUserActionSlice {
+export interface IUserActionSlice {
   current: UserActionState;
   setCurrentAction: (newState: UserActionState) => void;
   startPlacing: () => void;
