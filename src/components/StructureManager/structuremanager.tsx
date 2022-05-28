@@ -2,7 +2,6 @@ import { useFrame } from '@react-three/fiber';
 import React, { useState } from 'react';
 import { Vector2 } from 'three';
 import { v4 } from 'uuid';
-import { Pawn } from '../Pawn';
 
 type StructProps = {
   onStructSelected: () => void;
