@@ -3,8 +3,8 @@ import React from 'react';
 import { Vector3 } from 'three';
 
 const FLOOR_HEIGHT = 0.3;
-const FLOOR_WIDTH = 50;
-const FLOOR_DEPTH = 50;
+const FLOOR_WIDTH = 80;
+const FLOOR_DEPTH = 80;
 
 interface FloorProps {
   handleClick: (position: Vector3) => void;
@@ -18,7 +18,6 @@ export const Floor = ({ handleClick }: FloorProps): React.ReactElement => {
         0,
         ((FLOOR_DEPTH * event.uv.y) - (FLOOR_DEPTH / 2)) * -1,
       );
-      console.log(newPosition);
       handleClick(newPosition);
     }
   };

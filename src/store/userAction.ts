@@ -1,4 +1,4 @@
-import { UserActionState } from '../types';
+import { UserActionState } from '../sharedTypes';
 import { StoreSlice } from './helperTypes';
 
 export interface IUserActionSlice {

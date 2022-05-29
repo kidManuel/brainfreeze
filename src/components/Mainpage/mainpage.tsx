@@ -8,7 +8,7 @@ import { UIManager } from '../UiManager';
 export const Mainpage = (): React.ReactElement => (
   <>
     <UIManager />
-    <Canvas flat dpr={[1, 2]} camera={{ position: [5, 40, 0] }}>
+    <Canvas flat dpr={[1, 2]} camera={{ position: [20, 30, 20] }}>
       <PresentationControls global zoom={1} polar={[0, 0]}>
         <StructureManager />
         <ambientLight intensity={0.5} />
