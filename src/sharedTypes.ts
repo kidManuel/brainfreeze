@@ -5,7 +5,7 @@ export type StructProps = MeshProps & {
   structId: string;
 };
 
-export enum UserActionState {
+export enum GameState {
   DEFAULT,
   DRAGGING,
   PLACING_BUILDING,
