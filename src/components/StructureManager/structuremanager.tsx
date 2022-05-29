@@ -32,9 +32,6 @@ export const StructureManager = (): React.ReactElement => {
     );
   });
 
-  console.log(Boolean(gameState === GameState.PLACING_BUILDING), 'one');
-  console.log(Boolean(candidateStruct), 'two');
-
   const getCandidateStructure = () => {
     // review
     if (gameState === GameState.PLACING_BUILDING && candidateStruct) {

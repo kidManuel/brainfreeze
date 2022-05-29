@@ -22,8 +22,6 @@ export const Arrow = ({ isDragging, ...rest }: MeshProps & ArrowProps): React.Re
     <mesh
       ref={meshRef}
       geometry={nodes.arrow.geometry}
-      onPointerDown={() => console.log('mouse down')}
-      onPointerUp={() => console.log('mouse Up')}
       {...rest}
     >
       <meshStandardMaterial color="yellow" />

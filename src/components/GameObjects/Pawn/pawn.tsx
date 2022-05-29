@@ -36,8 +36,6 @@ export const Pawn = ({
   return (
     <mesh
       ref={meshRef}
-      // onPointerDown={() => console.log("mouse down")}
-      // onPointerUp={() => console.log("mouse Up")}
       {...rest}
     >
       <sphereGeometry args={[0.7, 5, 4]} />
