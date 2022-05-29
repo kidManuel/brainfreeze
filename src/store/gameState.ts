@@ -2,18 +2,18 @@ import { GameState } from '../sharedTypes';
 import { StoreSlice } from './helperTypes';
 
 export interface IGameStateSlice {
-  current: GameState;
+  gameState: GameState;
   setCurrentAction: (newState: GameState) => void;
   startPlacing: () => void;
 }
 
 export const createGameStateSlice: StoreSlice<IGameStateSlice> = (set, get) => ({
-  current: GameState.DEFAULT,
+  gameState: GameState.DEFAULT,
   setCurrentAction: (newState) => {
-    set((state) => ({ ...state, current: newState }));
+    set((state) => ({ ...state, gameState: newState }));
   },
-  getCurrentAction: () => get().current,
+  getCurrentAction: () => get().gameState,
   startPlacing: () => {
-    set((state) => ({ ...state, current: GameState.DRAGGING }));
+    set((state) => ({ ...state, gameState: GameState.PLACING_BUILDING }));
   },
 });

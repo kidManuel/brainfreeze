@@ -1,31 +1,34 @@
 import { ThreeEvent } from '@react-three/fiber';
 import React from 'react';
-import { Vector3 } from 'three';
+import { Vector2, Vector3 } from 'three';
+import { useStore } from '../../../store';
 
 const FLOOR_HEIGHT = 0.3;
 const FLOOR_WIDTH = 80;
 const FLOOR_DEPTH = 80;
 
 interface FloorProps {
-  handleClick: (position: Vector3) => void;
 }
 
-export const Floor = ({ handleClick }: FloorProps): React.ReactElement => {
-  const handlePointerDown = (event: ThreeEvent<PointerEvent>) => {
+export const Floor = (): React.ReactElement => {
+  const setMousePos = useStore((state) => state.setMousePos);
+
+  const uvToWorldXY = (uv: Vector2): [number, number] => {
+    const x = (FLOOR_WIDTH * uv.x) - (FLOOR_WIDTH / 2);
+    const y = ((FLOOR_DEPTH * uv.y) - (FLOOR_DEPTH / 2)) * -1;
+    return [x, y];
+  };
+
+  const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
     if (event.uv) {
-      const newPosition = new Vector3(
-        (FLOOR_WIDTH * event.uv.x) - (FLOOR_WIDTH / 2),
-        0,
-        ((FLOOR_DEPTH * event.uv.y) - (FLOOR_DEPTH / 2)) * -1,
-      );
-      handleClick(newPosition);
+      const mousePos = uvToWorldXY(event.uv);
+      setMousePos(mousePos);
     }
   };
 
   return (
     <mesh
-      onPointerDown={handlePointerDown}
-      //   onPointerUp={() => console.log("mouse Up")}
+      onPointerMove={handlePointerMove}
       position={[0, -FLOOR_HEIGHT / 2, 0]}
     >
       <boxGeometry args={[FLOOR_WIDTH, FLOOR_HEIGHT, FLOOR_DEPTH]} />
