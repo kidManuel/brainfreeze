@@ -1,13 +1,11 @@
 import { PresentationControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import React from 'react';
-import { useStore } from '../../store';
 import { Floor } from '../GameObjects/Floor';
 import { StructureManager } from '../StructureManager';
 import { UIManager } from '../UiManager';
 
 export const Mainpage = (): React.ReactElement => (
-
   <>
     <UIManager />
     <Canvas flat dpr={[1, 2]} camera={{ position: [20, 70, 20] }}>

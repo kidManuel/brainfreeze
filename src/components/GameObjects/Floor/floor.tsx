@@ -11,7 +11,7 @@ interface FloorProps {
 }
 
 export const Floor = (): React.ReactElement => {
-  const setMousePos = useStore((state) => state.setMousePos);
+  const { setMousePos } = useStore();
 
   const uvToWorldXY = (uv: Vector2): [number, number] => {
     const x = (FLOOR_WIDTH * uv.x) - (FLOOR_WIDTH / 2);

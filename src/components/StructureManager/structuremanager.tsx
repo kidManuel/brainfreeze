@@ -7,16 +7,11 @@ interface StructureManagerProps {
 }
 
 export const StructureManager = (): React.ReactElement => {
-  const { mousePos } = useStore();
-  const gameState = useStore((state) => state.gameState);
-  const candidateStruct = useStore((state) => state.candidateStruct);
-  const structsList = useStore((state) => state.structsList);
+  // TODO: Review transcienscy
 
-  // useEffect(() => {
-  //   useStore.subscribe((state) => {
-  //     mousePos.current = state.mousePos;
-  //   });
-  // });
+  const {
+    mousePos, gameState, candidateStruct, structsList,
+  } = useStore();
 
   const getComponents = () => structsList.map((singleStruct) => {
     const ComponentType = singleStruct.type;
