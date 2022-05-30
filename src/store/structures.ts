@@ -1,5 +1,6 @@
 import React from 'react';
 import { Vector3 } from 'three';
+import { v4 } from 'uuid';
 import { StructProps } from '../sharedTypes';
 import { StoreSlice } from './helperTypes';
 
@@ -15,9 +16,16 @@ export interface IStructsSlice {
   addStructure: (newStruct: StructureInfo) => void;
   removeStructure: (id: string) => void;
   setCandidate: (newCandidate: React.ComponentType<StructProps>) => void;
+  promoteCurrentCandidate: (position: Vector3) => void;
 }
 
-export const createStructuresSlice: StoreSlice<IStructsSlice> = (set) => ({
+const newStructureFromCandidate = (candidate: React.ComponentType<StructProps>, newPosition: Vector3):StructureInfo => ({
+  id: v4(),
+  type: candidate,
+  position: newPosition,
+});
+
+export const createStructuresSlice: StoreSlice<IStructsSlice> = (set, get) => ({
   structsList: [],
   candidateStruct: null,
   addStructure: (newStruct) => {
@@ -33,9 +41,17 @@ export const createStructuresSlice: StoreSlice<IStructsSlice> = (set) => ({
     });
   },
   setCandidate: (newCandidate) => {
-    set((state) => {
-      state.candidateStruct = newCandidate;
-      return state;
-    });
+    set((state) => ({ ...state, candidateStruct: newCandidate }));
   },
+  promoteCurrentCandidate: (candidatePosition: Vector3) => set((state) => {
+    const { candidateStruct } = get();
+    if (candidateStruct) {
+      return {
+        ...state,
+        candidateStruct: null,
+        structsList: [...state.structsList, newStructureFromCandidate(candidateStruct, candidatePosition)],
+      };
+    }
+    return state;
+  }),
 });

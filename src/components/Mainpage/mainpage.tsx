@@ -6,10 +6,15 @@ import { StructureManager } from '../StructureManager';
 import { UIManager } from '../UiManager';
 
 export const Mainpage = (): React.ReactElement => (
+
   <>
     <UIManager />
-    <Canvas flat dpr={[1, 2]} camera={{ position: [20, 70, 20] }}>
-      <PresentationControls global zoom={1} polar={[0, 0]}>
+    <Canvas flat dpr={[1, 2]} camera={{ position: [0, 50, 60] }}>
+      <PresentationControls
+        global
+        rotation={[0, -Math.PI / 4, 0]}
+        polar={[0, 0]}
+      >
         <StructureManager />
         <ambientLight intensity={0.5} />
         <Floor />
