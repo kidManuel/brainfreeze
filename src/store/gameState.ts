@@ -7,12 +7,11 @@ export interface IGameStateSlice {
   startPlacing: () => void;
 }
 
-export const createGameStateSlice: StoreSlice<IGameStateSlice> = (set, get) => ({
+export const createGameStateSlice: StoreSlice<IGameStateSlice> = (set) => ({
   gameState: GameState.DEFAULT,
   setCurrentAction: (newState) => {
     set((state) => ({ ...state, gameState: newState }));
   },
-  getCurrentAction: () => get().gameState,
   startPlacing: () => {
     set((state) => ({ ...state, gameState: GameState.PLACING_BUILDING }));
   },

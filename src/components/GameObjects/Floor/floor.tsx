@@ -10,10 +10,12 @@ const FLOOR_DEPTH = 80;
 
 export const Floor = (): React.ReactElement => {
   const {
-    setMousePos, gameState, promoteCurrentCandidate,
+    setMousePos, gameState, promoteCurrentCandidate, setCurrentAction,
   } = useStore();
 
   const uvToWorldXY = (uv: Vector2): [number, number] => {
+    // Alternative to https://stackoverflow.com/questions/13055214/mouse-canvas-x-y-to-three-js-world-x-y-z
+
     const x = (FLOOR_WIDTH * uv.x) - (FLOOR_WIDTH / 2);
     const y = ((FLOOR_DEPTH * uv.y) - (FLOOR_DEPTH / 2)) * -1;
     return [x, y];
@@ -21,13 +23,16 @@ export const Floor = (): React.ReactElement => {
 
   const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
     if (event.uv) {
-      const mousePos = uvToWorldXY(event.uv);
-      setMousePos(mousePos);
+      if (gameState === GameState.PLACING_BUILDING || gameState === GameState.DRAGGING) {
+        const mousePos = uvToWorldXY(event.uv);
+        setMousePos(mousePos);
+      }
     }
   };
 
   const finishPlacing = (position: Vector2) => {
     const mousePos = uvToWorldXY(position);
+    setCurrentAction(GameState.DEFAULT);
     promoteCurrentCandidate(new Vector3(mousePos[0], 0, mousePos[1]));
   };
 

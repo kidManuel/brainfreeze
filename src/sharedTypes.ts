@@ -1,8 +1,9 @@
 import { MeshProps } from '@react-three/fiber';
 
 export type StructProps = MeshProps & {
-  onStructSelected: () => void;
   structId: string;
+  onStructSelected?: () => void;
+  isCandidate?: boolean;
 };
 
 export enum GameState {
