@@ -11,7 +11,7 @@ export const Mainpage = (): React.ReactElement => (
 
   <>
     <UIManager />
-    <Canvas flat dpr={[1, 2]} camera={{ position: [0, 20, 25] }}>
+    <Canvas flat dpr={[1, 2]} camera={{ position: [0, 15, 15] }}>
       <PresentationControls
         global
         rotation={[0, -Math.PI / 4, 0]}
@@ -19,10 +19,10 @@ export const Mainpage = (): React.ReactElement => (
       >
         <EnviromentManager />
         <StructureManager />
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.6} />
         <Base structId="initialBase" scale={[3, 3, 3]} />
         <Floor />
-        <directionalLight />
+        <directionalLight intensity={1.2} />
       </PresentationControls>
     </Canvas>
   </>

@@ -19,6 +19,7 @@ export const Base = ({
       ref={meshRef}
       geometry={nodes.house.geometry}
       rotation={[0, rotationRef.current, 0]}
+      scale={[1.5, 1.5, 1.5]}
       {...rest}
     >
       {isCandidate
