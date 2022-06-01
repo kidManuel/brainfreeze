@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Vector3 } from 'three';
 import { GameState } from '../../sharedTypes';
 import { useStore } from '../../store';

@@ -1,12 +1,9 @@
 import { ThreeEvent } from '@react-three/fiber';
 import React from 'react';
 import { Vector2, Vector3 } from 'three';
+import { FLOOR_DEPTH, FLOOR_HEIGHT, FLOOR_WIDTH } from '../../../config';
 import { GameState } from '../../../sharedTypes';
 import { useStore } from '../../../store';
-
-const FLOOR_HEIGHT = 0.3;
-const FLOOR_WIDTH = 80;
-const FLOOR_DEPTH = 80;
 
 export const Floor = (): React.ReactElement => {
   const {
