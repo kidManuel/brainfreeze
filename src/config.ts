@@ -12,7 +12,10 @@ export const FOLIAGE_AMOUNT = 0.75;
 // Smaller is bigger clumps
 export const NOISE_SCALE = 0.18;
 
-export const FOLIAGE_SIZE_VARIATION_LOW = 1;
-export const FOLIAGE_SIZE_VARIATION_HIGH = 3;
+export const FOLIAGE_SIZE_DELTA = [1, 3];
 
 export const ROCKS_AMOUNT = 20;
+export const ROCKS_SIZE_DELTA = [1, 2.5];
+
+export const MUSHROOM_THRESHOLD = 0.01;
+export const MUSHROOM_SIZE_DELTA = [1, 3];
