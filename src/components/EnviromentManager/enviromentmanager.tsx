@@ -10,6 +10,7 @@ import {
   FOLIAGE_SIZE_VARIATION_HIGH,
   FOLIAGE_SIZE_VARIATION_LOW,
   NOISE_SCALE,
+  STARTING_AREA_SIZE,
 
 } from '../../config';
 import { createRemap } from '../../util/numberOps';
@@ -29,7 +30,7 @@ export const EnviromentManager = (): React.ReactElement => {
   const calculateFoliage = () => {
     const newFoliage:FoliageData[] = [];
 
-    const foliageSizeScalar = createRemap(0, FOLIAGE_AMOUNT, FOLIAGE_SIZE_VARIATION_LOW, FOLIAGE_SIZE_VARIATION_HIGH);
+    const foliageSizeScalar = createRemap(FOLIAGE_AMOUNT, 1, FOLIAGE_SIZE_VARIATION_LOW, FOLIAGE_SIZE_VARIATION_HIGH);
 
     // use a remapper to avoid the use of Math.sqrt
     const distanceToCenterScalar = createRemap(0, FLOOR_WIDTH + FLOOR_DEPTH, 0.42, 1);
@@ -45,7 +46,7 @@ export const EnviromentManager = (): React.ReactElement => {
         const simplexValue = simplex.current.noise2D(x * NOISE_SCALE, y * NOISE_SCALE);
         const thresholdValue = (simplexValue + 1) / 2;
 
-        const distanceToCenter = distanceToCenterScalar(Math.abs(x) + Math.abs(y));
+        const distanceToCenter = distanceToCenterScalar(Math.abs(x) + Math.abs(y)) - STARTING_AREA_SIZE;
         const n = thresholdValue * distanceToCenter;
 
         if ((n) >= (1 - FOLIAGE_AMOUNT)) {

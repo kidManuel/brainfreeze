@@ -15,11 +15,8 @@ code {
 #root {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-    0deg,
-    rgba(228, 255, 225, 1) 0%,
-    rgba(244, 253, 217, 1) 100%
-  );
+  background: rgb(255,161,169);
+  background: linear-gradient(0deg, rgba(255,161,169,1) 60%, rgba(77,161,169,1) 100%);
 }
 
 canvas {
