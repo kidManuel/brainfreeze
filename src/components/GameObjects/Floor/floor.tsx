@@ -2,12 +2,11 @@ import { ThreeEvent } from '@react-three/fiber';
 import React from 'react';
 import { Vector2, Vector3 } from 'three';
 import { FLOOR_DEPTH, FLOOR_HEIGHT, FLOOR_WIDTH } from '../../../config';
-import { GameState } from '../../../sharedTypes';
 import { useStore } from '../../../store';
 
 export const Floor = (): React.ReactElement => {
   const {
-    setMousePos, gameState, promoteCurrentCandidate, setCurrentAction,
+    setMousePos, promoteCurrentCandidate, dragging, candidateStruct,
   } = useStore();
 
   const uvToWorldXY = (uv: Vector2): [number, number] => {
@@ -20,7 +19,7 @@ export const Floor = (): React.ReactElement => {
 
   const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
     if (event.uv) {
-      if (gameState === GameState.PLACING_BUILDING || gameState === GameState.DRAGGING) {
+      if (candidateStruct || dragging) {
         const mousePos = uvToWorldXY(event.uv);
         setMousePos(mousePos);
       }
@@ -29,13 +28,12 @@ export const Floor = (): React.ReactElement => {
 
   const finishPlacing = (position: Vector2) => {
     const mousePos = uvToWorldXY(position);
-    setCurrentAction(GameState.DEFAULT);
     promoteCurrentCandidate(new Vector3(mousePos[0], 0, mousePos[1]));
   };
 
   const handlePointerClick = (event: ThreeEvent<PointerEvent>) => {
     if (event.uv) {
-      if (gameState === GameState.PLACING_BUILDING) {
+      if (candidateStruct) {
         finishPlacing(event.uv);
       }
     }

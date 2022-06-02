@@ -4,10 +4,9 @@ import { Base } from '../GameObjects';
 import { BottomBar, BottomBarButton } from '../UI Components';
 
 export const BuildingsBar = () => {
-  const { startPlacing, setCandidate } = useStore();
+  const { setCandidate } = useStore();
 
   const handleBaseBuilding = () => {
-    startPlacing();
     setCandidate(Base);
   };
 

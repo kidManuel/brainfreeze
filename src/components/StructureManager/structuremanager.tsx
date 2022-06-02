@@ -1,13 +1,12 @@
 import React from 'react';
 import { Vector3 } from 'three';
-import { GameState } from '../../sharedTypes';
 import { useStore } from '../../store';
 
 export const StructureManager = (): React.ReactElement => {
   // TODO: Review transcienscy
 
   const {
-    gameState, candidateStruct, structsList, mousePos,
+    candidateStruct, structsList, mousePos,
   } = useStore();
 
   const getComponents = () => structsList.map((singleStruct) => {
@@ -26,7 +25,7 @@ export const StructureManager = (): React.ReactElement => {
 
   const getCandidateStructure = () => {
     // review
-    if (gameState === GameState.PLACING_BUILDING && candidateStruct) {
+    if (candidateStruct) {
       const BuildingType = candidateStruct;
       return (
         <BuildingType
