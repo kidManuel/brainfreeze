@@ -21,3 +21,7 @@ export const pickInGradientByWeight = (color1:HexData, color2:HexData, weight:nu
     Math.round(color1[2] * w1 + color2[2] * w2)];
   return rgb;
 };
+
+export const degToRad = (degrees: number) => degrees * (Math.PI / 180);
+
+export const radToDeg = (radians:number) => radians * (180 / Math.PI);

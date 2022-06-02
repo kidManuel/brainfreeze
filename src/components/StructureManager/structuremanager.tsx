@@ -31,7 +31,7 @@ export const StructureManager = (): React.ReactElement => {
       return (
         <BuildingType
           structId="candidate"
-          position={new Vector3(mousePos[0], 0, mousePos[1])}
+          position={new Vector3(mousePos.x, 0, mousePos.z)}
           isCandidate
         />
       );
