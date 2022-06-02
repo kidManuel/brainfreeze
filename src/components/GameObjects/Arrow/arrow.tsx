@@ -13,7 +13,6 @@ export const Arrow = ({ ...rest }: MeshProps & ArrowProps): React.ReactElement =
   const meshRef = useRef<Mesh>(null);
   const { nodes } = getGLTF('/arrow.gltf');
   const { mousePos, dragging } = useStore();
-
   const rotation = Math.atan2(mousePos.z, mousePos.x);
   const scalation = mousePos.distanceTo(new Vector3(0, 0, 0));
 

@@ -23,7 +23,6 @@ export const Base = ({
   };
 
   const handlePointerDown = (event: ThreeEvent<PointerEvent>) => {
-    console.log('start drag');
     startDrag(finishDrag, position);
   };
 

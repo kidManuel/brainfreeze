@@ -17,13 +17,9 @@ export const Floor = (): React.ReactElement => {
     return [x, y];
   };
 
-  const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
-    if (event.uv) {
-      if (candidateStruct || dragging) {
-        const mousePos = uvToWorldXY(event.uv);
-        setMousePos(mousePos);
-      }
-    }
+  const captureMousePosition = (uv: Vector2) => {
+    const mousePos = uvToWorldXY(uv);
+    setMousePos(mousePos);
   };
 
   const finishPlacing = (position: Vector2) => {
@@ -31,18 +27,35 @@ export const Floor = (): React.ReactElement => {
     promoteCurrentCandidate(new Vector3(mousePos[0], 0, mousePos[1]));
   };
 
-  const handlePointerClick = (event: ThreeEvent<PointerEvent>) => {
+  /* Pointer Events */
+  const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
+    if (event.uv) {
+      if (candidateStruct || dragging) {
+        captureMousePosition(event.uv);
+      }
+    }
+  };
+
+  const handlePointerDown = (event: ThreeEvent<PointerEvent>) => {
+    if (event.uv) {
+      captureMousePosition(event.uv);
+    }
+  };
+
+  const handlePointerClick = (event: ThreeEvent<MouseEvent>) => {
     if (event.uv) {
       if (candidateStruct) {
         finishPlacing(event.uv);
       }
     }
   };
+  /* Pointer Events */
 
   return (
     <mesh
       onPointerMove={handlePointerMove}
-      onPointerDown={handlePointerClick}
+      onClick={handlePointerClick}
+      onPointerDown={handlePointerDown}
       position={[0, -FLOOR_HEIGHT / 2, 0]}
     >
       <boxGeometry args={[FLOOR_WIDTH, FLOOR_HEIGHT, FLOOR_DEPTH]} />
