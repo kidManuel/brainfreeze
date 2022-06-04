@@ -8,13 +8,14 @@ interface StructRendererProps {
   filename: string,
   frameFunction?: () => void;
   isCandidate?: boolean
+  onFinishPlacing: (a: Vector3) => void;
 }
 
 type StructRendererFinalProps = StructRendererProps & MeshProps;
 
 export const StructRenderer = (
   {
-    filename, isCandidate, frameFunction, ...rest
+    filename, isCandidate, frameFunction, onFinishPlacing, ...rest
   }: StructRendererFinalProps,
 ) => {
   const meshRef = useRef<Mesh>(null);
@@ -37,6 +38,12 @@ export const StructRenderer = (
       }
     }
   });
+
+  useEffect(() => {
+    if (!isCandidate && onFinishPlacing && meshRef.current) {
+      onFinishPlacing(meshRef.current.position);
+    }
+  }, [isCandidate]);
 
   return (
     <mesh

@@ -11,20 +11,33 @@ interface ArrowProps {
 export const Arrow = ({ ...rest }: MeshProps & ArrowProps): React.ReactElement => {
   const meshRef = useRef<Mesh>(null);
   const mousePosRef = useRef<Vector3>(new Vector3());
+  const originRef = useRef<Vector3>(new Vector3());
   const { nodes } = getGLTF('/arrow.gltf');
-  const { dragging } = useStore();
+  const { dragging, dragStartLocation } = useStore();
 
   useEffect(() => {
     useStore.subscribe((state) => (mousePosRef.current = state.mousePos));
   });
 
   useFrame(() => {
-    if (meshRef.current) {
+    if (meshRef.current && dragging && dragStartLocation) {
       const mousePosVector = mousePosRef.current;
-      const rotation = Math.atan2(mousePosVector.z, mousePosVector.x);
-      const scalation = mousePosVector.distanceTo(new Vector3(0, 0, 0));
+      const rotation = Math.atan2(
+        (mousePosVector.z - dragStartLocation.z),
+        (mousePosVector.x - dragStartLocation.x),
+      );
+      const scalation = Math.min(mousePosVector.distanceTo(dragStartLocation), 10);
+
+      // Offset origin
+      // TODO: Clamp offset
+      originRef.current.copy(dragStartLocation)
+        .sub(mousePosRef.current)
+        .setLength(-1)
+        .add(dragStartLocation);
+
+      meshRef.current.position.copy(originRef.current);
       meshRef.current.rotation.set(0, -rotation, 0);
-      meshRef.current.scale.set(scalation, 1, scalation * 0.3);
+      meshRef.current.scale.set(scalation, scalation, scalation * 0.2);
     }
   });
 
@@ -35,7 +48,7 @@ export const Arrow = ({ ...rest }: MeshProps & ArrowProps): React.ReactElement =
         geometry={nodes.arrow.geometry}
         {...rest}
       >
-        <meshStandardMaterial color="black" />
+        <meshStandardMaterial color="cornflowerblue" transparent opacity={0.7} />
       </mesh>
     ) : <></>;
 };
