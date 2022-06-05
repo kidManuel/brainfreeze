@@ -26,13 +26,13 @@ export const Arrow = ({ ...rest }: MeshProps & ArrowProps): React.ReactElement =
         (mousePosVector.z - dragStartLocation.z),
         (mousePosVector.x - dragStartLocation.x),
       );
-      const scalation = Math.min(mousePosVector.distanceTo(dragStartLocation), 10);
+      const distanceToMouse = mousePosVector.distanceTo(dragStartLocation);
+      const scalation = Math.min(distanceToMouse, 10);
 
       // Offset origin
-      // TODO: Clamp offset
       originRef.current.copy(dragStartLocation)
         .sub(mousePosRef.current)
-        .setLength(-1)
+        .setLength(-Math.min(distanceToMouse, 1))
         .add(dragStartLocation);
 
       meshRef.current.position.copy(originRef.current);
