@@ -1,14 +1,12 @@
-import { ThreeEvent } from '@react-three/fiber';
 import produce from 'immer';
 import { Vector3 } from 'three';
+import { PointerEventHandler } from '../sharedTypes';
 import { StoreSlice } from './helperTypes';
-
-type PointerEventHandler = ((event: ThreeEvent<PointerEvent>) => void) | null;
 
 export interface IMouseSlice {
   mousePos: Vector3;
   dragging: boolean;
-  dragListener: PointerEventHandler;
+  dragListener: (() => void) | null;
   dragStartLocation: Vector3 | null;
   setMousePos: (newPos: [number, number]) => void;
   startDrag: (dragListener: PointerEventHandler, startLocation: Vector3) => void;

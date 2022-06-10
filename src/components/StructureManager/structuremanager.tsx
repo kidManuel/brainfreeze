@@ -3,8 +3,6 @@ import { Vector3 } from 'three';
 import { useStore } from '../../store';
 
 export const StructureManager = (): React.ReactElement => {
-  // TODO: Review transcienscy
-
   const {
     candidateStruct, structsList, mousePos,
   } = useStore();
@@ -26,6 +24,7 @@ export const StructureManager = (): React.ReactElement => {
   const getCandidateStructure = () => {
     // review
     if (candidateStruct) {
+      // Need an uppercased variable name to pass as React.ElementType to JSX
       const BuildingType = candidateStruct;
       return (
         <BuildingType

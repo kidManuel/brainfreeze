@@ -7,13 +7,21 @@ type CameraProps = {
 };
 
 export const CanvasControls = ({ children }:CameraProps) => {
-  const { endDrag } = useStore();
+  const { endDrag, dragListener, dragging } = useStore();
+
+  const handleMouseUp = () => {
+    if (dragging && dragListener) {
+      dragListener();
+      endDrag();
+    }
+  };
+
   return (
     <Canvas
       flat
       dpr={[1, 2]}
       camera={{ position: [0, 15, 15] }}
-      onMouseUp={endDrag}
+      onPointerUp={handleMouseUp}
     >
       {children}
     </Canvas>

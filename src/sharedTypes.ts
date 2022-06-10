@@ -1,4 +1,4 @@
-import { MeshProps } from '@react-three/fiber';
+import { MeshProps, ThreeEvent } from '@react-three/fiber';
 import { Vector3 } from 'three';
 
 export type StructProps = MeshProps & {
@@ -14,3 +14,5 @@ export enum GameState {
   PLACING_BUILDING,
   PAUSED,
 }
+
+export type PointerEventHandler = ((event: ThreeEvent<PointerEvent>) => void) | null;

@@ -4,20 +4,20 @@ import { calculateNature, EnviromentData } from './func';
 export const EnviromentManager = (): React.ReactElement => {
   const [foliage, setFoliage] = useState<EnviromentData[]>([]);
 
-  const placeFoliage = () => {
+  const getFoliage = () => {
     setFoliage(calculateNature());
   };
 
   useEffect(() => {
-    placeFoliage();
+    getFoliage();
   }, []);
 
-  const getComponents = () => foliage.map((singleTree) => (
-    <singleTree.Type
-      position={singleTree.position}
-      rotation={[0, singleTree.rotation, 0]}
-      scale={singleTree.scale}
-      key={singleTree.id}
+  const getComponents = () => foliage.map((envEntity) => (
+    <envEntity.Type
+      position={envEntity.position}
+      rotation={[0, envEntity.rotation, 0]}
+      scale={envEntity.scale}
+      key={envEntity.id}
     />
   ));
 

@@ -59,7 +59,7 @@ export const Floor = (): React.ReactElement => {
       position={[0, -FLOOR_HEIGHT / 2, 0]}
     >
       <boxGeometry args={[FLOOR_WIDTH, FLOOR_HEIGHT, FLOOR_DEPTH]} />
-      <meshStandardMaterial color="darkseagreen" />
+      <meshStandardMaterial color="#8ADE78" />
     </mesh>
   );
 };
