@@ -4,6 +4,7 @@ import {
   CameraControls, CanvasControls, EnviromentManager, StructureManager, UIManager,
 } from '..';
 import { Base, Arrow, Floor } from '../GameObjects';
+import { PopulationManager } from '../PopulationManager';
 
 export const Mainpage = (): React.ReactElement => (
 
@@ -13,6 +14,7 @@ export const Mainpage = (): React.ReactElement => (
       <CameraControls>
         <EnviromentManager />
         <StructureManager />
+        <PopulationManager />
         <ambientLight intensity={0.6} />
         <Base structId="initialBase" scale={[3, 3, 3]} position={new Vector3(0, 0, 0)} />
         <Arrow />

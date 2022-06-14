@@ -7,12 +7,16 @@ import React, { useEffect, useRef } from 'react';
 type PawnProps = {
   inputDirection: Vector3;
   maxDistance: number;
+  pawnId: string;
+  color?: string;
 };
 
 /** Base for spawning workers */
 export const Pawn = ({
   inputDirection,
   maxDistance,
+  color,
+  pawnId,
   ...rest
 }: MeshProps & PawnProps): React.ReactElement => {
   const meshRef = useRef<Mesh>(null);
@@ -20,7 +24,8 @@ export const Pawn = ({
   const currentDirection = useRef<Vector3>(new Vector3(0, 0, 0));
 
   useFrame(() => {
-    meshRef.current?.position.add(currentDirection.current);
+    // TODO: WHY THE FUCK SUB????
+    meshRef.current?.position.sub(currentDirection.current);
     distanceTravelled.current += currentDirection.current.length();
     if (distanceTravelled.current > maxDistance) {
       // Re villero esto
@@ -30,7 +35,7 @@ export const Pawn = ({
   });
 
   useEffect(() => {
-    currentDirection.current = inputDirection;
+    currentDirection.current = inputDirection.clone().setLength(0.25);
   }, [inputDirection]);
 
   return (
@@ -39,7 +44,7 @@ export const Pawn = ({
       {...rest}
     >
       <sphereGeometry args={[0.7, 5, 4]} />
-      <meshStandardMaterial color="#F0A868" />
+      <meshStandardMaterial color={color || '#F0A868'} />
     </mesh>
   );
 };

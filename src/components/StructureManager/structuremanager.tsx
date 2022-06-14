@@ -22,7 +22,6 @@ export const StructureManager = (): React.ReactElement => {
   });
 
   const getCandidateStructure = () => {
-    // review
     if (candidateStruct) {
       // Need an uppercased variable name to pass as React.ElementType to JSX
       const BuildingType = candidateStruct;
