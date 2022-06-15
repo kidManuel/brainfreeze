@@ -1,4 +1,5 @@
 import React from 'react';
+import { BarButton } from './styles';
 
 export interface BottomBarButtonProps {
   onClickHandler?: () => void,
@@ -9,7 +10,7 @@ export const BottomBarButton = ({
   onClickHandler,
   children = null,
 }: BottomBarButtonProps):React.ReactElement => (
-  <button type="button" className="barButton" onClick={onClickHandler}>
+  <BarButton onClick={onClickHandler}>
     {children}
-  </button>
+  </BarButton>
 );

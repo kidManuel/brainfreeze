@@ -6,7 +6,7 @@ interface BottomBarProps {
 }
 
 export const BottomBar = ({ children }: BottomBarProps):React.ReactElement => (
-  <BottomBarContainer>
+  <BottomBarContainer hide={false}>
     {children}
   </BottomBarContainer>
 );

@@ -1,9 +1,9 @@
 import React from 'react';
 import { BuildingsBar } from '../BuildingsBar/BuildingsBar';
-import './styles.css';
+import { UiManager } from './styles';
 
 export const UIManager = (): React.ReactElement => (
-  <div id="uimanager">
+  <UiManager>
     <BuildingsBar />
-  </div>
+  </UiManager>
 );
