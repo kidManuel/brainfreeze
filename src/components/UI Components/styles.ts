@@ -6,13 +6,19 @@ interface BottomBarProps {
 
 export const BottomBarContainer = styled.div<BottomBarProps>`
     position: absolute;
-    bottom: ${(props) => (props.hide ? '15px' : '0px')};
+    bottom: 0;
     right: 150px;
     display: flex;
     align-items: flex-end;
+    transition: all 0.3s;
+    transform: ${(props) => (props.hide ? 'translateY(100%)' : 'translateY(0%)')};
 `;
 
-export const BarButton = styled.div`
+interface BarButtonProps {
+  background: string;
+}
+
+export const BarButton = styled.div<BarButtonProps>`
     background-color: #f0a868;
     color: white;
     font-weight: bold;
@@ -27,7 +33,13 @@ export const BarButton = styled.div`
     transition: all 0.3s;
     cursor: pointer;
     margin: 0 30px;
+    width: 70px;
+    height: 70px;
+    background-image: ${(props) => `url("${props.background}")`};
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
     &:hover {
-        padding: 28px 30px;
+        height: 100px;
     }
 `;

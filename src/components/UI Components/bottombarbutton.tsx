@@ -3,14 +3,16 @@ import { BarButton } from './styles';
 
 export interface BottomBarButtonProps {
   onClickHandler?: () => void,
-  children?: React.ReactNode | undefined
+  children?: React.ReactNode | undefined,
+  background: string
 }
 
 export const BottomBarButton = ({
   onClickHandler,
+  background,
   children = null,
 }: BottomBarButtonProps):React.ReactElement => (
-  <BarButton onClick={onClickHandler}>
+  <BarButton background={background} onClick={onClickHandler}>
     {children}
   </BarButton>
 );

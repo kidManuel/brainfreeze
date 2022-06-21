@@ -24,11 +24,10 @@ export const Pawn = ({
   const currentDirection = useRef<Vector3>(new Vector3(0, 0, 0));
 
   useFrame(() => {
-    // TODO: WHY THE FUCK SUB????
     meshRef.current?.position.sub(currentDirection.current);
     distanceTravelled.current += currentDirection.current.length();
     if (distanceTravelled.current > maxDistance) {
-      // Re villero esto
+      // TODO: Reconsider
       distanceTravelled.current = 0;
       currentDirection.current.negate();
     }
